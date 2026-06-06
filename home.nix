@@ -308,66 +308,70 @@ in
   };
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+  home.file =
+    let
+      configRoot = ./config;
+    in
+    {
+      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+      # # symlink to the Nix store copy.
+      # ".screenrc".source = dotfiles/screenrc;
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-    "hypr" = {
-      enable = true;
-      source = ./hypr;
-      target = builtins.getEnv "HOME" + "/.config/hypr";
-      recursive = true;
+      # # You can also set the file content immediately.
+      # ".gradle/gradle.properties".text = ''
+      #   org.gradle.console=verbose
+      #   org.gradle.daemon.idletimeout=3600000
+      # '';
+      "hypr" = {
+        enable = true;
+        source = ./config/hypr;
+        target = builtins.getEnv "HOME" + "/.config/hypr";
+        recursive = true;
+      };
+      "i3" = {
+        enable = true;
+        source = ./config/i3;
+        target = builtins.getEnv "HOME" + "/.config/i3";
+        recursive = true;
+      };
+      "i3status" = {
+        enable = true;
+        source = ./config/i3status;
+        target = builtins.getEnv "HOME" + "/.config/i3status";
+        recursive = true;
+      };
+      "joshuto" = {
+        enable = true;
+        source = ./config/joshuto;
+        target = builtins.getEnv "HOME" + "/.config/joshuto";
+        recursive = true;
+      };
+      "rofi" = {
+        enable = true;
+        source = ./config/rofi;
+        target = builtins.getEnv "HOME" + "/.config/rofi";
+        recursive = true;
+      };
+      "waybar" = {
+        enable = true;
+        source = ./config/waybar;
+        target = builtins.getEnv "HOME" + "/.config/waybar";
+        recursive = true;
+      };
+      "wofi" = {
+        enable = true;
+        source = ./config/wofi;
+        target = builtins.getEnv "HOME" + "/.config/wofi";
+        recursive = true;
+      };
+      "zathura" = {
+        enable = true;
+        source = ./config/zathura;
+        target = builtins.getEnv "HOME" + "/.config/zathura";
+        recursive = true;
+      };
     };
-    "i3" = {
-      enable = true;
-      source = ./i3;
-      target = builtins.getEnv "HOME" + "/.config/i3";
-      recursive = true;
-    };
-    "i3status" = {
-      enable = true;
-      source = ./i3status;
-      target = builtins.getEnv "HOME" + "/.config/i3status";
-      recursive = true;
-    };
-    "joshuto" = {
-      enable = true;
-      source = ./joshuto;
-      target = builtins.getEnv "HOME" + "/.config/joshuto";
-      recursive = true;
-    };
-    "rofi" = {
-      enable = true;
-      source = ./rofi;
-      target = builtins.getEnv "HOME" + "/.config/rofi";
-      recursive = true;
-    };
-    "waybar" = {
-      enable = true;
-      source = ./waybar;
-      target = builtins.getEnv "HOME" + "/.config/waybar";
-      recursive = true;
-    };
-    "wofi" = {
-      enable = true;
-      source = ./wofi;
-      target = builtins.getEnv "HOME" + "/.config/wofi";
-      recursive = true;
-    };
-    "zathura" = {
-      enable = true;
-      source = ./zathura;
-      target = builtins.getEnv "HOME" + "/.config/zathura";
-      recursive = true;
-    };
-  };
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
