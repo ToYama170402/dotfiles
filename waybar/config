@@ -1,0 +1,112 @@
+{
+    // 配置を画面上部中央にする
+    "position": "top",
+    "layer": "top",
+    // 幅を画面全体の幅より小さくする（中央に浮かせたドック/メニューバー風）
+    "height": 10,
+    "modules-left": [
+        "hyprland/workspaces", // 左側にワークスペース（仮想デスクトップ）
+        "mpris",
+    ],
+    "modules-center": [
+        "clock" // 中央に時計
+    ],
+    "modules-right": [
+	"cpu",
+	"memory",
+	"disk",
+        "network",
+        "battery",
+	"backlight",
+        "pulseaudio",
+        "tray" // システムトレイ（nm-applet, blueman-appletなど）
+    ],
+
+    // ==================================
+    // 各モジュールの詳細設定
+    // ==================================
+    
+    // 🔊 Pulseaudio (音量設定)
+    "pulseaudio": {
+        "format": "  {volume}%",
+        "format-muted": "󰝟 Muted",
+        // クリックで音量ミキサー (pavucontrol) を起動
+        "on-click": "pamixer -t" ,
+	"on-scroll-up": "pamixer -d 1",
+	"on-scroll-down": "pamixer -i 1",
+    },
+
+    // 🌐 Network (ネットワーク設定)
+    "network": {
+        "format-wifi": "   {essid}", // Wi-Fi接続時のアイコンとESSID
+        "format-ethernet": "󰈀 Wired", // 有線接続時のアイコン
+        "format-disconnected": "󰤮 Disconnected",
+        // クリックでネットワークマネージャのアプレットを起動
+        "on-click": "nm-applet" 
+    },
+    
+    // 🔋 Battery (バッテリー設定)
+    "battery": {
+        "states": {
+            "good": 90,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["󰂎", "󰁽", "󰁿", "󰂀", "󰂁", "󰂆", "󰂇", "󰂈", "󰂉", "󰂊", "󰁹"]
+    },
+    
+    // 💻 CPU 使用率
+    "cpu": {
+        "format": "  {usage}%",
+    },
+    
+    // 🧠 Memory (メモリ使用率)
+    "memory": {
+        "format": "  {}%",
+    },
+
+    // Disk
+    "disk": {
+        "format": "  {used} / {total}",
+	"path": "/",
+    },
+
+    //  画面輝度
+    "backlight": {
+        "device": "amdgpu_bl1",
+        "format": "{icon} {percent}%",
+	"format-icons": ["󰃞 ", "󰃝 ", "󰃟 ","󰃠 "],
+	"on-click": "~/.config/hypr/switch_night_mode.sh",
+	"on-scroll-up": "brightnessctl set 5%-",
+	"on-scroll-down": "brightnessctl set +5%",
+    },
+
+    "clock": {
+	"format": "{:%m/%d (%a) %H:%M}",
+	"tooltip": false,
+    },
+
+    // mpris
+    "mpris": {
+        "format": "{player_icon}  {artist} | {title}",
+        "format-paused": "{status_icon}  {artist} | {title}",
+        "player-icons": {
+             "default": "",
+             "mpv": ""
+        },
+        "status-icons": {
+             "paused": ""
+        },
+        // "ignored-players": ["firefox"]
+    },
+
+    // tray
+    "tray": {
+        "icon-size": 18,
+	"spacing": 2,
+    },
+}

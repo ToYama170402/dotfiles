@@ -1,0 +1,60 @@
+/* ウィンドウ全体 */
+window {
+    margin: 0px;
+    
+    /* パレットのアクセントカラー(濃いオレンジ)で縁取り */
+    border: 2px solid #FF9800;
+    
+    /* パレットの背景色(ダークグレー) + 透過 */
+    background-color: rgba(38, 38, 38, 0.95);
+    
+    border-radius: 8px;
+    font-family: "SF Pro Display", "Roboto", "Sans", "Fira Code", monospace;
+    font-size: 14px;
+}
+
+/* 入力エリア */
+#input {
+    margin: 10px;
+    border: none;
+    border-radius: 4px;
+    
+    /* 背景より少し明るい色にする */
+    background-color: #383838;
+    
+    /* パレットの文字色 */
+    color: #E0E0E0;
+    
+    padding: 10px;
+}
+
+/* 検索結果リストエリア */
+#inner-box {
+    margin: 10px;
+    background-color: transparent;
+}
+
+/* 各エントリ */
+#entry {
+    margin: 2px 0px;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #E0E0E0;
+}
+
+/* 選択中のエントリ */
+/* 画像のグラデーション (イエローオレンジ -> レッドオレンジ) を再現 */
+#entry:selected {
+    background-image: none;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    border-left: 4px solid #FF9800;
+    border-radius: 2px;
+}
+
+/* アイコン */
+#img {
+    margin-right: 10px;
+}

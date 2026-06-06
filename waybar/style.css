@@ -1,0 +1,46 @@
+/* 全体のスタイル */
+#waybar {
+    /* 背景色を少し透過した黒やグレーにする */
+    background-color: rgba(30, 30, 30, 0.8); 
+    
+    padding: 0 0 1px 8px; 
+    
+    font-family: "HackGen Nerd Font";
+    font-size: 12px;
+}
+
+/* 中央配置 (Mac風) のために、左右に空間を作る */
+.modules-left,
+.modules-right {
+    min-width: 150px;
+    color: #ffffff;
+}
+.modules-center {
+    color: #ffffff;
+}
+
+#cpu,
+#memoru,
+#disk,
+#network,
+#battery,
+#backlight,
+#pulseaudio,
+#tray,
+#mpris{
+    margin: 0 4px;
+    border-radius: 4px;
+}
+
+/* ワークスペースボタンをmacOSのドック風に丸くする */
+#workspaces button {
+    padding: 0 1px;
+    color: #ffffff;
+    border-radius: 4px; /* 丸み */
+    margin: 1px;
+}
+
+/* アクティブなワークスペースボタン */
+#workspaces button.active {
+    background-color: rgba(255, 255, 255, 0.2); 
+}
