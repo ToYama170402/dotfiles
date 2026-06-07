@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    art
     bat
     blender
     btop
@@ -12,6 +13,7 @@
     handbrake
     inkscape
     iotop
+    joshuto
     jq
     lazydocker
     lazygit
