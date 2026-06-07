@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  inputs,
   ...
 }:
 let
@@ -9,7 +7,7 @@ let
 in
 {
   imports = [
-    inputs.nixvim.homeModules.nixvim
+    ./programs
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -73,224 +71,8 @@ in
     slack
     tree
     typst
-    vim
     zathura
   ];
-
-  programs = {
-    alacritty = {
-      enable = true;
-      settings = {
-        font = {
-          size = 16.0;
-          normal = {
-            family = "HackGen35 Console";
-            style = "Regular";
-          };
-          bold = {
-            family = "HackGen35 Console";
-            style = "Bold";
-          };
-        };
-
-        colors = {
-          primary = {
-            background = "#272822";
-            foreground = "#f8f8f2";
-          };
-          cursor = {
-            text = "CellBackground";
-            cursor = "CellForeground";
-          };
-          normal = {
-            black = "#272822";
-            red = "#f92672";
-            green = "#a6e22e";
-            yellow = "#f4bf75";
-            blue = "#66d9ef";
-            magenta = "#ae81ff";
-            cyan = "#a1efe4";
-            white = "#f8f8f2";
-          };
-          bright = {
-            black = "#75715e";
-            red = "#f92672";
-            green = "#a6e22e";
-            yellow = "#f4bf75";
-            blue = "#66d9ef";
-            magenta = "#ae81ff";
-            cyan = "#a1efe4";
-            white = "#f9f8f5";
-          };
-        };
-      };
-    };
-
-    bash = {
-      enable = true;
-      shellAliases = {
-        ls = "ls --color=auto";
-        ll = "ls -l";
-        la = "ls -a";
-        grep = "grep --color=auto";
-        feh = "feh --scale-down --auto-zoom";
-      };
-      initExtra = "
-      function parse_git_branch {
-        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-
-      }
-      PS1='\\[\\033[01;32m\\]\\u@\\[\\033[01;34m\\]\\h \\[\\033[01;33m\\]\\w\\[\\033[00m\\]$(parse_git_branch)\\n\\$ '
-    ";
-    };
-
-    direnv = {
-      enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
-      nix-direnv.enable = true;
-    };
-
-    git = {
-      enable = true;
-      settings.user = {
-        name = "toyama170402";
-        email = "toyamasoujinng@gmail.com";
-      };
-    };
-
-    nixvim = {
-      enable = true;
-      defaultEditor = true;
-
-      opts = {
-        nu = true;
-        softtabstop = 2;
-        shiftwidth = 2;
-        expandtab = true;
-        smartindent = true;
-        termguicolors = true;
-        langmenu = "en_US.UTF-8";
-        clipboard = "unnamedplus";
-      };
-
-      keymaps =
-        let
-          options = {
-            noremap = true;
-            silent = true;
-          };
-        in
-        [
-          {
-            mode = "i";
-            key = "jj";
-            action = "<ESC>";
-            inherit options;
-          }
-          {
-            mode = [
-              "n"
-              "v"
-            ];
-            key = "j";
-            action = "gj";
-            inherit options;
-          }
-          {
-            mode = [
-              "n"
-              "v"
-            ];
-            key = "k";
-            action = "gk";
-            inherit options;
-          }
-        ];
-
-      colorschemes.gruvbox-material-nvim.enable = true;
-
-      plugins = { };
-
-      extraPlugins = [
-        (pkgs.vimUtils.buildVimPlugin {
-          name = "fcitx.nvim";
-          version = "master";
-          src = pkgs.fetchFromGitHub {
-            owner = "h-hg";
-            repo = "fcitx.nvim";
-            rev = "HEAD";
-            hash = "sha256-0cxLjkg9rFtl4ISeiRlI14tDMezHQSiZIdchA2x2Yes=";
-          };
-        })
-      ];
-    };
-
-    # neovim = {
-    #   viAlias = true;
-    #   vimAlias = true;
-    #   vimdiffAlias = true;
-    #   initLua = ''
-    #     vim.cmd("language message en_US.UTF-8")
-
-    #     -- vscode only
-    #     --if vim.g.vscode then
-    #     --end
-
-    #     -- neovim only
-    #     if not vim.g.vscode then
-    #       -- only Neovim
-    #       vim.cmd("syntax enable")
-    #       vim.opt.number = true
-    #     end
-    # };
-
-    zsh = {
-      enable = true;
-      shellAliases = {
-        feh = "feh --scale-down --auto-zoom";
-        dps = ''docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}"'';
-        l = "ls";
-        la = "ls -a";
-        ll = "ls -l";
-        lg = "lazygit";
-      };
-      defaultKeymap = "viins";
-      oh-my-zsh = {
-        enable = true;
-        theme = "dst";
-        plugins = [
-          "git"
-        ];
-      };
-      autosuggestion = {
-        enable = true;
-      };
-      syntaxHighlighting = {
-        enable = true;
-      };
-      initContent = ''
-        # viモードでカーソルの形を変更する
-        # インサートモード: 縦棒 |
-        # ノーマルモード: 四角いブロック █
-        function zle-keymap-select () {
-          case $KEYMAP in
-            vicmd) echo -ne '\e[1 q';; # ノーマルモード
-            viins) echo -ne '\e[5 q';; # インサートモード
-            *) echo -ne '\e[5 q';;
-          esac
-        }
-        zle -N zle-keymap-select
-        zle-line-init() {
-            zle -K viins # 初期モードをインサートに設定
-            echo -ne "\e[5 q"
-        }
-        zle -N zle-line-init
-
-        source <(fzf --zsh)
-      '';
-    };
-  };
 
   services = {
     flameshot = {
@@ -308,70 +90,66 @@ in
   };
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
-  home.file =
-    let
-      configRoot = ./config;
-    in
-    {
-      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-      # # symlink to the Nix store copy.
-      # ".screenrc".source = dotfiles/screenrc;
+  home.file = {
+    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+    # # symlink to the Nix store copy.
+    # ".screenrc".source = dotfiles/screenrc;
 
-      # # You can also set the file content immediately.
-      # ".gradle/gradle.properties".text = ''
-      #   org.gradle.console=verbose
-      #   org.gradle.daemon.idletimeout=3600000
-      # '';
-      "hypr" = {
-        enable = true;
-        source = ./config/hypr;
-        target = builtins.getEnv "HOME" + "/.config/hypr";
-        recursive = true;
-      };
-      "i3" = {
-        enable = true;
-        source = ./config/i3;
-        target = builtins.getEnv "HOME" + "/.config/i3";
-        recursive = true;
-      };
-      "i3status" = {
-        enable = true;
-        source = ./config/i3status;
-        target = builtins.getEnv "HOME" + "/.config/i3status";
-        recursive = true;
-      };
-      "joshuto" = {
-        enable = true;
-        source = ./config/joshuto;
-        target = builtins.getEnv "HOME" + "/.config/joshuto";
-        recursive = true;
-      };
-      "rofi" = {
-        enable = true;
-        source = ./config/rofi;
-        target = builtins.getEnv "HOME" + "/.config/rofi";
-        recursive = true;
-      };
-      "waybar" = {
-        enable = true;
-        source = ./config/waybar;
-        target = builtins.getEnv "HOME" + "/.config/waybar";
-        recursive = true;
-      };
-      "wofi" = {
-        enable = true;
-        source = ./config/wofi;
-        target = builtins.getEnv "HOME" + "/.config/wofi";
-        recursive = true;
-      };
-      "zathura" = {
-        enable = true;
-        source = ./config/zathura;
-        target = builtins.getEnv "HOME" + "/.config/zathura";
-        recursive = true;
-      };
+    # # You can also set the file content immediately.
+    # ".gradle/gradle.properties".text = ''
+    #   org.gradle.console=verbose
+    #   org.gradle.daemon.idletimeout=3600000
+    # '';
+    "hypr" = {
+      enable = true;
+      source = ./config/hypr;
+      target = builtins.getEnv "HOME" + "/.config/hypr";
+      recursive = true;
     };
+    "i3" = {
+      enable = true;
+      source = ./config/i3;
+      target = builtins.getEnv "HOME" + "/.config/i3";
+      recursive = true;
+    };
+    "i3status" = {
+      enable = true;
+      source = ./config/i3status;
+      target = builtins.getEnv "HOME" + "/.config/i3status";
+      recursive = true;
+    };
+    "joshuto" = {
+      enable = true;
+      source = ./config/joshuto;
+      target = builtins.getEnv "HOME" + "/.config/joshuto";
+      recursive = true;
+    };
+    "rofi" = {
+      enable = true;
+      source = ./config/rofi;
+      target = builtins.getEnv "HOME" + "/.config/rofi";
+      recursive = true;
+    };
+    "waybar" = {
+      enable = true;
+      source = ./config/waybar;
+      target = builtins.getEnv "HOME" + "/.config/waybar";
+      recursive = true;
+    };
+    "wofi" = {
+      enable = true;
+      source = ./config/wofi;
+      target = builtins.getEnv "HOME" + "/.config/wofi";
+      recursive = true;
+    };
+    "zathura" = {
+      enable = true;
+      source = ./config/zathura;
+      target = builtins.getEnv "HOME" + "/.config/zathura";
+      recursive = true;
+    };
+  };
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
