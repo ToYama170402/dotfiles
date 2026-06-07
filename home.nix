@@ -9,6 +9,7 @@ in
   imports = [
     ./programs
     ./packages.nix
+    ./config
   ];
   home.username = builtins.getEnv "USER";
   home.homeDirectory = builtins.getEnv "HOME";
@@ -26,56 +27,6 @@ in
           showStartupLaunchMessage = false;
         };
       };
-    };
-  };
-  home.file = {
-    "hypr" = {
-      enable = true;
-      source = ./config/hypr;
-      target = builtins.getEnv "HOME" + "/.config/hypr";
-      recursive = true;
-    };
-    "i3" = {
-      enable = true;
-      source = ./config/i3;
-      target = builtins.getEnv "HOME" + "/.config/i3";
-      recursive = true;
-    };
-    "i3status" = {
-      enable = true;
-      source = ./config/i3status;
-      target = builtins.getEnv "HOME" + "/.config/i3status";
-      recursive = true;
-    };
-    "joshuto" = {
-      enable = true;
-      source = ./config/joshuto;
-      target = builtins.getEnv "HOME" + "/.config/joshuto";
-      recursive = true;
-    };
-    "rofi" = {
-      enable = true;
-      source = ./config/rofi;
-      target = builtins.getEnv "HOME" + "/.config/rofi";
-      recursive = true;
-    };
-    "waybar" = {
-      enable = true;
-      source = ./config/waybar;
-      target = builtins.getEnv "HOME" + "/.config/waybar";
-      recursive = true;
-    };
-    "wofi" = {
-      enable = true;
-      source = ./config/wofi;
-      target = builtins.getEnv "HOME" + "/.config/wofi";
-      recursive = true;
-    };
-    "zathura" = {
-      enable = true;
-      source = ./config/zathura;
-      target = builtins.getEnv "HOME" + "/.config/zathura";
-      recursive = true;
     };
   };
 
