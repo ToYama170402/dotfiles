@@ -20,7 +20,7 @@
       nixgl,
       nixvim,
       ...
-    }:
+    }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -39,12 +39,7 @@
           ./home.nix
         ];
         extraSpecialArgs = {
-          inputs = {
-            inherit nixpkgs;
-            inherit home-manager;
-            inherit nixgl;
-            inherit nixvim;
-          };
+          inherit inputs;
         };
       };
     };
