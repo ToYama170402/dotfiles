@@ -1,0 +1,35 @@
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    bat
+    blender
+    btop
+    discord
+    discord-ptb
+    fastfetch
+    feh
+    fzf
+    handbrake
+    inkscape
+    iotop
+    jq
+    lazydocker
+    lazygit
+    losslesscut-bin
+    mpv
+    nethogs
+    nil
+    nixfmt
+    nixgl.auto.nixGLDefault
+    nmap
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
+    pandoc
+    pavucontrol
+    radeontop
+    slack
+    tree
+    typst
+    zathura
+  ];
+}
