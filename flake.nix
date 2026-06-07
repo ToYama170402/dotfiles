@@ -42,5 +42,7 @@
           inherit inputs;
         };
       };
+
+      formatter."${system}" = pkgs.nixfmt;
     };
 }
