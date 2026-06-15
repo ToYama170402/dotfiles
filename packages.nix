@@ -28,6 +28,7 @@
     noto-fonts-color-emoji
     pandoc
     pavucontrol
+    libqalculate
     radeontop
     slack
     tree
