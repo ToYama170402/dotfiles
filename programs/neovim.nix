@@ -1,5 +1,7 @@
 { pkgs, inputs, ... }:
 {
+  nixpkgs.config.allowUnfree = true;
+
   imports = [
     inputs.nixvim.homeModules.nixvim
   ];
@@ -69,9 +71,56 @@
         vim.cmd("syntax enable")
         vim.opt.number = true
       end
+      require("hlchunk").setup({
+        blank = {
+          enable = true,
+        },
+        chunk = {
+          enable = true,       
+        },
+        indent = {
+          enable = true,
+        },
+      })
     '';
 
-    plugins = { };
+    plugins = {
+      auto-save.enable = true;
+      cmp = {
+        enable = true;
+        autoEnableSources = true;
+        settings = {
+          sources = [
+            { name = "nvim_lsp"; }
+            { name = "async-path"; }
+            { name = "buffer"; }
+          ];
+        };
+        mapping = {
+          "<C-Space>" = "cmp.mapping.complete()";
+          "<CR>" = "cmp.mapping.confirm({ select = true })";
+          "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })";
+          "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' })";
+        };
+      };
+      comment.enable = true;
+      lsp = {
+        enable = true;
+        servers = {
+          lua_ls.enable = true;
+          marksman.enable = true;
+          nixd.enable = true;
+          tynymist.enable = true;
+        };
+      };
+      nvim-autopairs.enable = true;
+      treesitter = {
+        enable = true;
+        highlight.enable = true;
+        indent.enable = true;
+        folding.enable = true;
+      };
+    };
 
     extraPlugins = [
       (pkgs.vimUtils.buildVimPlugin {
@@ -84,7 +133,17 @@
           hash = "sha256-0cxLjkg9rFtl4ISeiRlI14tDMezHQSiZIdchA2x2Yes=";
         };
       })
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "nvim-markdown";
+        version = "master";
+        src = pkgs.fetchFromGitHub {
+          owner = "ixru";
+          repo = "nvim-markdown";
+          rev = "HEAD";
+          hash = "sha256-wjYTO9WqdDEbH4L3dsHqOoeQf0y/Uo6WX94w/D4EuGU=";
+        };
+      })
+      pkgs.vimPlugins.hlchunk-nvim
     ];
   };
-
 }
