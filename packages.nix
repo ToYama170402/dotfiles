@@ -11,6 +11,7 @@
     feh
     fzf
     handbrake
+    img2pdf
     inkscape
     iotop
     joshuto
