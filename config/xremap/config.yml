@@ -1,0 +1,14 @@
+modmap:
+  - name: Global
+    remap:
+      KEY_MUHENKAN: CTRL_L
+      KEY_KATAKANAHIRAGANA: KEY_PRINT
+      KEY_HENKAN: KEY_ESC
+      KEY_SPACE: 
+        held: Shift_L
+        alone: KEY_SPACE
+        alone_timeout_millis: 100
+        # hold_threshold_millis: 100
+        free_hold: true
+    window:
+      not: [/Minecraft.*/]

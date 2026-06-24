@@ -7,6 +7,7 @@
     ./rofi
     ./waybar
     ./wofi
+    ./xremap
     ./zathura
   ];
 }
