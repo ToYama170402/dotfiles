@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     art
     bat
+    beutl
     blender
     btop
     discord

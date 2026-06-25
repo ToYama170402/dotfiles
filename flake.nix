@@ -11,6 +11,7 @@
     nixvim = {
       url = "github:nix-community/nixvim";
     };
+    nix-beutl.url = "github:ToYama170402/nix-beutl";
   };
 
   outputs =
@@ -19,6 +20,7 @@
       home-manager,
       nixgl,
       nixvim,
+      nix-beutl,
       ...
     }@inputs:
     let
@@ -28,6 +30,9 @@
         config.allowUnfree = true;
         overlays = [
           nixgl.overlay
+          (final: prev: {
+            beutl = nix-beutl.packages.${system}.default;
+          })
         ];
       };
     in
