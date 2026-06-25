@@ -35,6 +35,7 @@
     slack
     tree
     typst
+    tinymist
     zathura
   ];
 }
