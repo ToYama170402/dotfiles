@@ -83,11 +83,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1782354445,
-        "narHash": "sha256-0EyHOP4p7e1lb/e1UnAu3qUIXnr3a2ZCG66+yMdA/xM=",
+        "lastModified": 1782365470,
+        "narHash": "sha256-x00BEeJ2OosmFkHgCREqOgGYucRwig2QZrFdnDIKyrw=",
         "owner": "ToYama170402",
         "repo": "nix-beutl",
-        "rev": "d05199fba845d245c1a8a2a5e0be7748ed339226",
+        "rev": "7edc6b3b67713f77f7e4f2ab8907d39c5f487225",
         "type": "github"
       },
       "original": {
