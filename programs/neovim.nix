@@ -70,18 +70,19 @@
         -- only Neovim
         vim.cmd("syntax enable")
         vim.opt.number = true
+        require("hlchunk").setup({
+          blank = {
+            enable = true,
+          },
+          chunk = {
+            enable = true,       
+          },
+          indent = {
+            enable = true,
+          },
+        })
       end
-      require("hlchunk").setup({
-        blank = {
-          enable = true,
-        },
-        chunk = {
-          enable = true,       
-        },
-        indent = {
-          enable = true,
-        },
-      })
+
     '';
 
     plugins = {
