@@ -251,12 +251,22 @@ end
 hl.bind(mainMod .. " + CTRL +H", hl.dsp.focus({ workspace = "m-1" }))
 hl.bind(mainMod .. " + CTRL +L", hl.dsp.focus({ workspace = "+1" }))
 
+local special_workspaces = {
+  minus = "discord",
+  asciicircum = "notion",
+  backslash = "music"
+}
+
+for k, v in pairs(special_workspaces) do
+  hl.bind(mainMod .. " + " .. k, hl.dsp.workspace.toggle_special(v))
+end
+
 hl.window_rule({
   name = "Discord(-ptb)",
   match = {
     class = "^(discord|discord-ptb|Slack)$",
   },
-  workspace = "name:discord",
+  workspace = "special:discord silent",
 })
 
 hl.window_rule({
@@ -264,7 +274,7 @@ hl.window_rule({
   match = {
     class = "^(Notion)|^(notion-app-electron)$",
   },
-  workspace = "name:notion",
+  workspace = "special:notion silent",
 })
 
 hl.window_rule({
@@ -272,7 +282,7 @@ hl.window_rule({
   match = {
     class = "^(YouTube Music|Spotify)$",
   },
-  workspace = "name:music",
+  workspace = "special:music silent",
 })
 
 -- Reload configuration
