@@ -251,6 +251,8 @@ end
 hl.bind(mainMod .. " + CTRL +H", hl.dsp.focus({ workspace = "m-1" }))
 hl.bind(mainMod .. " + CTRL +L", hl.dsp.focus({ workspace = "+1" }))
 
+hl.bind(mainMod .. " + CTRL + SHIFT + TAB", hl.dsp.workspace.move({ monitor = "+1" }))
+
 local special_workspaces = {
   minus = "discord",
   asciicircum = "notion",
