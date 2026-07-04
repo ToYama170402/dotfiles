@@ -35,6 +35,7 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("warp-taskbar")
   hl.exec_cmd("flameshot")
   hl.exec_cmd("xremap /home/toyama/.config/xremap/config.yml")
+  hl.exec_cmd("shikane")
 end)
 
 -- Environment variables
