@@ -268,7 +268,7 @@ end
 hl.window_rule({
   name = "Discord(-ptb)",
   match = {
-    class = "^(discord|discord-ptb|Slack)$",
+    class = "^(discord|discord-ptb|Slack|wechat)$",
   },
   workspace = "special:discord silent",
 })
