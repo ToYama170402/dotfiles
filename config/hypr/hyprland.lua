@@ -238,7 +238,8 @@ hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
 
 hl.bind(mainMod .. " + F4", hl.dsp.window.close(hl.get_active_window()))
 
-hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen(hl.get_active_window()))
+hl.bind(mainMod .. " + F",
+  hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
 hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float(hl.get_active_window(), true))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + G", hl.dsp.layout("togglesplit"))
