@@ -217,14 +217,14 @@ hl.bind("CONTROL + SHIFT + ESCAPE", hl.dsp.exec_cmd(terminal .. " -e btop"))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
 
 -- Brightness control
-hl.bind(mainMod .. " + XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set +5%"))
-hl.bind(mainMod .. " + XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set -5%"))
-hl.bind(mainMod .. " + XF86TouchpadToggle", hl.dsp.exec_cmd("~/.config/hypr/switch_night_mode.sh"))
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set +5%"))
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set -5%"))
+hl.bind("XF86TouchpadToggle", hl.dsp.exec_cmd("~/.config/hypr/switch_night_mode.sh"))
 
 -- Volume control
-hl.bind(mainMod .. " + XF86AudioRaiseVolume", hl.dsp.exec_cmd("pamixer -i 2"))
-hl.bind(mainMod .. " + XF86AudioLowerVolume", hl.dsp.exec_cmd("pamixer -d 2"))
-hl.bind(mainMod .. " + XF86AudioMute", hl.dsp.exec_cmd("pamixer -t"))
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("pamixer -i 2"))
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pamixer -d 2"))
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("pamixer -t"))
 
 -- Screenshot
 hl.bind("PRINT", hl.dsp.exec_cmd("flameshot gui"))
