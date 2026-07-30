@@ -92,6 +92,9 @@ hl.config({
   master = {
     new_status = "master",
   },
+  scrolling = {
+    column_width = 0.4,
+  },
   misc = {
     force_default_wallpaper = -1,
     disable_hyprland_logo = false,
@@ -254,6 +257,34 @@ hl.bind(mainMod .. " + CTRL +H", hl.dsp.focus({ workspace = "m-1" }))
 hl.bind(mainMod .. " + CTRL +L", hl.dsp.focus({ workspace = "+1" }))
 
 hl.bind(mainMod .. " + CTRL + SHIFT + TAB", hl.dsp.workspace.move({ monitor = "+1" }))
+
+hl.bind(mainMod .. " + M + TAB", function()
+  local layouts   = { "scrolling", "dwindle", "master", "monocle" }
+  local workspace = hl.get_active_workspace()
+  if hl.get_active_special_workspace() then
+    workspace = hl.get_active_special_workspace()
+  end
+
+  local next_layout = "dwindle"
+
+  if not workspace then
+    return
+  end
+
+  for i = 1, #layouts do
+    if layouts[i] == workspace.tiled_layout then
+      local next_layout_idx = (i % #layouts) + 1
+      next_layout = layouts[next_layout_idx]
+      break
+    end
+  end
+
+  if workspace.special then
+    hl.workspace_rule({ workspace = tostring(workspace.name), layout = next_layout })
+  else
+    hl.workspace_rule({ workspace = tostring(workspace.id), layout = next_layout })
+  end
+end)
 
 local special_workspaces = {
   minus = "discord",
