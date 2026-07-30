@@ -218,7 +218,7 @@ hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
 
 -- Brightness control
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set +5%"))
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set -5%"))
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"))
 hl.bind("XF86TouchpadToggle", hl.dsp.exec_cmd("~/.config/hypr/switch_night_mode.sh"))
 
 -- Volume control
