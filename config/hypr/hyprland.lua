@@ -247,6 +247,8 @@ hl.bind(mainMod .. " + SHIFT + SPACE", hl.dsp.window.float(hl.get_active_window(
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + G", hl.dsp.layout("togglesplit"))
 
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+
 --- Workspace management
 for i = 1, 10 do
   local key = i % 10 -- 10 maps to key 0
