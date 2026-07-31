@@ -249,6 +249,19 @@ hl.bind(mainMod .. " + G", hl.dsp.layout("togglesplit"))
 
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 
+hl.bind(mainMod .. " + R", hl.dsp.submap("resize"))
+hl.define_submap("resize", function()
+  -- Set repeating binds for resizing the active window.
+  hl.bind("L", hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
+  hl.bind("H", hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
+  hl.bind("K", hl.dsp.window.resize({ x = 0, y = 10, relative = true }), { repeating = true })
+  hl.bind("J", hl.dsp.window.resize({ x = 0, y = -10, relative = true }), { repeating = true })
+
+  -- Use `reset` to go back to the global submap
+  hl.bind("escape", hl.dsp.submap("reset"))
+  hl.bind(mainMod .. " + R", hl.dsp.submap("reset"))
+end)
+
 --- Workspace management
 for i = 1, 10 do
   local key = i % 10 -- 10 maps to key 0
