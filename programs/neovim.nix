@@ -96,13 +96,14 @@
             { name = "async-path"; }
             { name = "buffer"; }
           ];
+          mapping = {
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })";
+            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' })";
+          };
         };
-        mapping = {
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<CR>" = "cmp.mapping.confirm({ select = true })";
-          "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' })";
-          "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' })";
-        };
+
       };
       comment.enable = true;
       lsp = {
@@ -111,7 +112,7 @@
           lua_ls.enable = true;
           marksman.enable = true;
           nixd.enable = true;
-          tynymist.enable = true;
+          tinymist.enable = true;
         };
       };
       nvim-autopairs.enable = true;
