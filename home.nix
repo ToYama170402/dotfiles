@@ -20,7 +20,6 @@ in
       enable = true;
       settings = {
         General = {
-          useGrimAdapter = true;
           disabledTrayIcon = false;
           showDesktopNotification = false;
           showAbortNotification = false;
