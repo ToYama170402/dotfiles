@@ -21,6 +21,7 @@
     lazygit
     losslesscut-bin
     mpv
+    ncdu
     nethogs
     nil
     nixfmt
