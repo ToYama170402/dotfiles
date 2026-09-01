@@ -226,6 +226,12 @@ hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("pamixer -i 2"))
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pamixer -d 2"))
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("pamixer -t"))
 
+-- Media control
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"))
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"))
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"))
+hl.bind("XF86AudioStop", hl.dsp.exec_cmd("playerctl stop"))
+
 -- Screenshot
 hl.bind("PRINT", hl.dsp.exec_cmd("flameshot gui"))
 
