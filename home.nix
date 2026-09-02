@@ -29,6 +29,12 @@ in
     };
   };
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-han 7d";
+  };
+
   home.sessionVariables = {
     EDITOR = "nvim";
     XDG_DATA_DIRS = "$HOME/.local/share/applications:$HOME/.nix-profile/share/applications:/usr/local/share:/usr/share:$XDG_DATA_DIRS";
