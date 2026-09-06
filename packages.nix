@@ -12,6 +12,7 @@
     feh
     fzf
     handbrake
+    imagemagick
     img2pdf
     inkscape
     iotop
