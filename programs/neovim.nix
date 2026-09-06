@@ -131,7 +131,7 @@
           owner = "h-hg";
           repo = "fcitx.nvim";
           rev = "HEAD";
-          hash = "sha256-0cxLjkg9rFtl4ISeiRlI14tDMezHQSiZIdchA2x2Yes=";
+          hash = "sha256-nv38gSq6X7Q0aPdAknGjwfh8Bn+AxTpgUYK9kNyKfM8=";
         };
       })
       (pkgs.vimUtils.buildVimPlugin {
