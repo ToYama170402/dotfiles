@@ -1,9 +1,9 @@
 modmap:
   - name: Global
     remap:
-      KEY_MUHENKAN: CTRL_L
-      KEY_KATAKANAHIRAGANA: KEY_PRINT
-      KEY_HENKAN: KEY_ESC
+      CTRL_R: KEY_PRINT
+      ALT_R: KEY_ESC
+      CapsLock: KEY_ZENKAKUHANKAKU
       KEY_SPACE: 
         held: Shift_L
         alone: KEY_SPACE

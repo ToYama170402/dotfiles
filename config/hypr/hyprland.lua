@@ -169,7 +169,7 @@ hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" 
 
 hl.config({
   input = {
-    kb_layout = "jp",
+    kb_layout = "us",
     kb_variant = "",
     kb_model = "",
     kb_options = "",
@@ -206,7 +206,7 @@ hl.device({
 
 -- Keybindings
 
-local mainMod = "ALT"
+local mainMod = "SUPER"
 
 -- Applications launching
 
