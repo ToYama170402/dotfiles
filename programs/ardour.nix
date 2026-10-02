@@ -4,7 +4,9 @@
     ardour
     lsp-plugins
     calf
-    rnnoise
+    rnnoise-plugin
+    noise-repellent
+    deepfilternet
   ];
 
   home.sessionVariables = {
