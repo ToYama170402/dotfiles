@@ -39,6 +39,7 @@
     tree
     typst
     tinymist
+    voicevox
     zathura
   ];
 }
