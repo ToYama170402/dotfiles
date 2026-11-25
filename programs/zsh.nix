@@ -42,6 +42,7 @@
       zle -N zle-line-init
 
       source <(fzf --zsh)
+      export SSH_AUTH_SOCK=~/.bitwarden-ssh-agent.sock
     '';
   };
 }
